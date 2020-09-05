@@ -8,8 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+
 @Entity
 @Table(name = "CLIENT")
+@SQLDelete(sql = "UPDATE CLIENT SET DELETED = ID WHERE ID = ?")
 public class Client {
 
     private Integer id;

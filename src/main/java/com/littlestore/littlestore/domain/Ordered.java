@@ -15,8 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "ORDERED")
+@SQLDelete(sql = "UPDATE ORDERED SET DELETED = ID WHERE ID = ?")
+@Where(clause = "DELETED = 0")
 public class Ordered {
 
     private Integer id;
@@ -62,7 +67,7 @@ public class Ordered {
     }
 
     @ManyToMany
-    @JoinTable(name = "assoc_product_ordered", joinColumns = { @JoinColumn(name = "id_ordered") }, inverseJoinColumns = { @JoinColumn(name = "id_product") })
+    @JoinTable(name = "assoc_product_ordered", joinColumns = {@JoinColumn(name = "id_ordered")}, inverseJoinColumns = {@JoinColumn(name = "id_product")})
     public List<Product> getProducts() {
         return products;
     }

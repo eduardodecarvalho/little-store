@@ -8,8 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
 @Table(name = "PRODUCT")
+@SQLDelete(sql = "UPDATE PRODUCT SET DELETED = ID WHERE ID = ?")
+@Where(clause = "DELETED = 0")
 public class Product {
 
 
