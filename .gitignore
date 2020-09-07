@@ -1,8 +1,8 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!**/src/main/**
+!**/src/test/**
 
 ### STS ###
 .apt_generated
@@ -26,8 +26,17 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
+
+mysql/auto.cnf
+mysql/ca-key.pem
+mysql/client-key.pem
+mysql/ib_buffer_pool
+mysql/ib_logfile0
+mysql/ib_logfile1
+mysql/ibdata1
+mysql/ibtmp1
+mysql/private_key.pem
+mysql/server-key.pem

@@ -41,13 +41,13 @@ public class ProductController {
     @PutMapping("/v1/products/{id}")
     public void update(@PathVariable Integer id, @RequestBody ProductDTO productDTO) {
         productDTO.setId(id);
-        productService.create(productDTO);
+        productService.update(productDTO.getProduct());
     }
 
     @PostMapping("/v1/products")
     @ResponseStatus(HttpStatus.CREATED)
     public IdDTO create(@RequestBody ProductDTO productDTO) {
-        return new IdDTO(productService.create(productDTO));
+        return new IdDTO(productService.create(productDTO.getProduct()));
     }
 
     @DeleteMapping("/v1/products/{id}")

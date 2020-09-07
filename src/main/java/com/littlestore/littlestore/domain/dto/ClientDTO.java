@@ -2,6 +2,9 @@ package com.littlestore.littlestore.domain.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.littlestore.littlestore.domain.Client;
@@ -39,12 +42,17 @@ public class ClientDTO implements Serializable {
         client.setName(name);
     }
 
-    public LocalDateTime getBirthDate() {
-        return client.getBirthDate();
+    public Date getBirthDate() {
+        if (client.getBirthDate() != null) {
+            return Date.from(client.getBirthDate().atZone(ZoneOffset.UTC).toInstant());
+        }
+        return null;
     }
 
-    public void setBirthDate(LocalDateTime birthDate) {
-        client.setBirthDate(birthDate);
+    public void setBirthDate(Date birthDate) {
+        if (birthDate != null) {
+            client.setBirthDate(LocalDateTime.ofInstant(birthDate.toInstant(), ZoneId.systemDefault()));
+        }
     }
 
 }

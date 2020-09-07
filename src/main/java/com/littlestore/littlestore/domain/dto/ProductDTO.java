@@ -31,6 +31,14 @@ public class ProductDTO implements Serializable {
         product.setId(id);
     }
 
+    public String getSku() {
+        return product.getSku();
+    }
+
+    public void setSku(String sku) {
+        product.setSku(sku);
+    }
+
     public String getName() {
         return product.getName();
     }
@@ -55,11 +63,11 @@ public class ProductDTO implements Serializable {
         product.setPrice(price);
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return product.getQuantity();
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         product.setQuantity(quantity);
     }
 }

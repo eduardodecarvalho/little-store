@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.littlestore.littlestore.domain.Client;
-import com.littlestore.littlestore.domain.dto.ClientDTO;
 import com.littlestore.littlestore.repository.ClientRepository;
 import com.littlestore.littlestore.utils.BusinessException;
 
@@ -25,12 +24,19 @@ public class ClientService {
     }
 
     public List<Client> findAll() {
-        return clientRepository.findAll();
+        return clientRepository.findAllByOrderByName();
     }
 
     @Transactional
-    public Integer create(ClientDTO clientDTO) {
-        return clientRepository.save(clientDTO.getClient()).getId();
+    public void update(Client client) {
+        if (clientRepository.existsById(client.getId())) {
+            clientRepository.save(client);
+        }
+    }
+
+    @Transactional
+    public Integer create(Client client) {
+        return clientRepository.save(client).getId();
     }
 
     public void delete(Integer id) {

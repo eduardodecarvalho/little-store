@@ -41,17 +41,17 @@ public class ClientController {
     @PutMapping("/v1/clients/{id}")
     public void update(@PathVariable Integer id, @RequestBody ClientDTO clientDTO) {
         clientDTO.setId(id);
-        clientService.create(clientDTO);
+        clientService.update(clientDTO.getClient());
     }
 
     @PostMapping("/v1/clients")
     @ResponseStatus(HttpStatus.CREATED)
     public IdDTO create(@RequestBody ClientDTO clientDTO) {
-        return new IdDTO(clientService.create(clientDTO));
+        return new IdDTO(clientService.create(clientDTO.getClient()));
     }
 
     @DeleteMapping("/v1/clients/{id}")
-    public void update(@PathVariable Integer id) {
+    public void delete(@PathVariable Integer id) {
         clientService.delete(id);
     }
 }

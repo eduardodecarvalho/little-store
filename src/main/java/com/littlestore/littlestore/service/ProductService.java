@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.littlestore.littlestore.domain.Product;
-import com.littlestore.littlestore.domain.dto.ProductDTO;
 import com.littlestore.littlestore.repository.ProductRepository;
 import com.littlestore.littlestore.utils.BusinessException;
 
@@ -25,12 +24,17 @@ public class ProductService {
     }
 
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return productRepository.findAllByOrderByName();
     }
 
     @Transactional
-    public Integer create(ProductDTO productDTO) {
-        return productRepository.save(productDTO.getProduct()).getId();
+    public Integer create(Product product) {
+        return productRepository.save(product).getId();
+    }
+
+    @Transactional
+    public void update(Product product) {
+        productRepository.save(product);
     }
 
     public void delete(Integer id) {

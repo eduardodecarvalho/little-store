@@ -17,7 +17,6 @@ import org.hibernate.annotations.Where;
 @Where(clause = "DELETED = 0")
 public class Product {
 
-
     private Integer id;
     private String sku;
     private String name;
