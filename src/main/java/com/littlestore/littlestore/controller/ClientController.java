@@ -3,6 +3,7 @@ package com.littlestore.littlestore.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,9 @@ import com.littlestore.littlestore.service.ClientService;
 @RestController
 public class ClientController {
 
-    private final ClientService clientService;
+    private ClientService clientService;
 
+    @Autowired
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }

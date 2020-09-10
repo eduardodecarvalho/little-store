@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,11 +18,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
-@Table(name = "ORDER")
-@SQLDelete(sql = "UPDATE ORDERED SET DELETED = ID WHERE ID = ?")
+@Table(name = "CLIENT_ORDER")
+@SQLDelete(sql = "UPDATE CLIENT_ORDER SET DELETED = ID WHERE ID = ?")
 @Where(clause = "DELETED = 0")
 public class Order {
 
@@ -42,7 +41,7 @@ public class Order {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID_CLIENT")
+    @JoinColumn(name = "id_client", nullable = false)
     public Client getClient() {
         return client;
     }
@@ -67,9 +66,7 @@ public class Order {
         this.purchaseDate = purchaseDate;
     }
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "order")
-//    @JoinColumn(name = "id_order_item")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE, orphanRemoval = true)
     public List<OrderedItem> getOrderedItems() {
         return orderedItems;
     }

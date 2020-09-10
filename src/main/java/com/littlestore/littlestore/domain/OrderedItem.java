@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,12 +19,11 @@ public class OrderedItem {
     private Integer id;
 
     @Column(nullable = false)
-    private Integer quantity;
+    private int quantity;
     private Product product;
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_order")
+    @ManyToOne()
     public Order getOrder() {
         return order;
     }
@@ -36,7 +34,10 @@ public class OrderedItem {
 
     @Transient
     public BigDecimal getTotalPrice() {
-        return getProduct().getPrice().multiply(BigDecimal.valueOf(getQuantity()));
+        if (product != null) {
+            return getProduct().getPrice().multiply(BigDecimal.valueOf(getQuantity()));
+        }
+        return null;
     }
 
     @Id
@@ -45,11 +46,11 @@ public class OrderedItem {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 

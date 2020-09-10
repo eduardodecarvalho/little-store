@@ -31,7 +31,7 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
     @Test
     public void findById() throws Exception {
         Integer id = 1;
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/v1/orders/" + id, String.class);
+        ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/v1/products/" + id, String.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
         String expected = "{}";
@@ -54,7 +54,7 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
                 "      \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell" +
                 " Mobile Connect pairs your iOS or Android smartphone with your laptop.\"," +
                 "      \"id\":1," +
-                "      \"quantity\":0," +
+                "      \"quantity\":70," +
                 "      \"sku\":\"DELLNOTEI5\"," +
                 "      \"price\":300," +
                 "      \"name\":\"Inspiron 15 3000 Laptop\"" +
@@ -83,7 +83,7 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
                 "   \"id\":1," +
                 "   \"sku\":\"APPLENOTEI5\"," +
                 "   \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\"," +
-                "   \"quantity\":0," +
+                "   \"quantity\":70," +
                 "   \"price\":300" +
                 "}";
         ProductDTO dto = new ObjectMapper().readValue(dtoString, ProductDTO.class);

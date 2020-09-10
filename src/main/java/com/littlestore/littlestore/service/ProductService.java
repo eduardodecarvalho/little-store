@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.littlestore.littlestore.domain.OrderedItem;
 import com.littlestore.littlestore.domain.Product;
 import com.littlestore.littlestore.repository.ProductRepository;
 import com.littlestore.littlestore.utils.BusinessException;
@@ -43,5 +44,15 @@ public class ProductService {
             throw new BusinessException(BusinessException.CANNOT_DELETE_PRODUCT_IN_STOCK);
         }
         productRepository.delete(product);
+    }
+
+    public void withdrawFromStock(OrderedItem orderedItem) {
+        Integer newStock = orderedItem.getProduct().getQuantity() - orderedItem.getQuantity();
+        if (newStock < 0) {
+            throw new BusinessException(BusinessException.PRODUCT_OUT_OF_STOCK);
+        }
+        Product product = orderedItem.getProduct();
+        product.setQuantity(newStock);
+        productRepository.save(product);
     }
 }
