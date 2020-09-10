@@ -24,6 +24,7 @@ public class OrderedItem {
     private Order order;
 
     @ManyToOne()
+    @JoinColumn(name = "id_client_order", nullable = false)
     public Order getOrder() {
         return order;
     }
