@@ -66,7 +66,7 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
                 " of your environment — making web pages and email look as natural as the printed page. With millions of colors, everything you see is rich" +
                 " and vibrant.\"," +
                 "      \"id\":2," +
-                "      \"quantity\":60," +
+                "      \"quantity\":70," +
                 "      \"sku\":\"APPLENOTEI5\"," +
                 "      \"price\":900," +
                 "      \"name\":\"MacBook Air\"" +
@@ -124,16 +124,6 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
     public void deleteWithInvalidId() throws Exception {
         assertEquals(HttpStatus.BAD_REQUEST, restTemplate.exchange("http://localhost:" + port + "/v1/products/" + 99, HttpMethod.DELETE, null,
                 String.class).getStatusCode());
-    }
-
-    @Test
-    public void deleteById() throws Exception {
-        Integer id = 1;
-        final ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:" + port + "/v1/products/" + id, HttpMethod.DELETE, null,
-                String.class);
-        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        Integer deleted = jdbcTemplate.queryForObject("SELECT DELETED FROM PRODUCT WHERE id = " + id, Integer.class);
-        Assert.assertEquals(id, deleted, 0);
     }
 
     @Test

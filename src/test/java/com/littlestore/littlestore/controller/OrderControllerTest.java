@@ -172,9 +172,7 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
         String expected = "{\n" +
                 "   \"id\":1,\n" +
                 "   \"client\":{\n" +
-                "      \"name\":\"TED\",\n" +
                 "      \"id\":1,\n" +
-                "      \"birthDate\":480643200000\n" +
                 "   },\n" +
                 "   \"purchaseValue\":3000,\n" +
                 "   \"orderedItems\":[\n" +
