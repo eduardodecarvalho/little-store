@@ -33,29 +33,27 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
         ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/v1/orders/" + id, String.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
-        String expected = "{\n" +
-                "   \"id\":1,\n" +
-                "   \"client\":{\n" +
-                "      \"id\":1,\n" +
-                "      \"birthDate\":\"1985-03-26T00:00:00.000+00:00\",\n" +
-                "      \"name\":\"TED\"\n" +
-                "   },\n" +
-                "   \"orderedItems\":[\n" +
-                "      {\n" +
-                "         \"id\":1,\n" +
-                "         \"product\":{\n" +
-                "            \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\",\n" +
-                "            \"id\":1,\n" +
-                "            \"quantity\":60,\n" +
-                "            \"sku\":\"DELLNOTEI5\",\n" +
-                "            \"price\":300,\n" +
-                "            \"name\":\"Inspiron 15 3000 Laptop\"\n" +
-                "         },\n" +
-                "         \"totalPrice\":20700,\n" +
-                "         \"quantity\":69\n" +
-                "      }\n" +
-                "   ],\n" +
-                "   \"purchaseValue\":3000\n" +
+        String expected = "{" +
+                "   \"id\":1," +
+                "   \"client\":{" +
+                "      \"id\":1" +
+                "   }," +
+                "   \"orderedItems\":[" +
+                "      {" +
+                "         \"id\":1," +
+                "         \"product\":{" +
+                "            \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\"," +
+                "            \"id\":1," +
+                "            \"quantity\":60," +
+                "            \"sku\":\"DELLNOTEI5\"," +
+                "            \"price\":300," +
+                "            \"name\":\"Inspiron 15 3000 Laptop\"" +
+                "         }," +
+                "         \"totalPrice\":20700," +
+                "         \"quantity\":69" +
+                "      }" +
+                "   ]," +
+                "   \"purchaseValue\":3000" +
                 "}";
         JSONAssert.assertEquals(expected, responseEntity.getBody(), false);
     }
@@ -75,9 +73,7 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
                 "   {\n" +
                 "      \"id\":1,\n" +
                 "      \"client\":{\n" +
-                "         \"id\":1,\n" +
-                "         \"birthDate\":\"1985-03-26T00:00:00.000+00:00\",\n" +
-                "         \"name\":\"TED\"\n" +
+                "         \"id\":1\n" +
                 "      },\n" +
                 "      \"orderedItems\":[\n" +
                 "         {\n" +
@@ -85,22 +81,18 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
                 "            \"product\":{\n" +
                 "               \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\",\n" +
                 "               \"id\":1,\n" +
-                "               \"quantity\":60,\n" +
                 "               \"sku\":\"DELLNOTEI5\",\n" +
                 "               \"price\":300,\n" +
                 "               \"name\":\"Inspiron 15 3000 Laptop\"\n" +
                 "            },\n" +
-                "            \"totalPrice\":20700,\n" +
-                "            \"quantity\":69\n" +
+                "            \"totalPrice\":20700\n" +
                 "         }\n" +
-                "      ],\n" +
-                "      \"purchaseValue\":3000\n" +
+                "      ]\n" +
                 "   },\n" +
                 "   {\n" +
                 "      \"id\":2,\n" +
                 "      \"client\":{\n" +
                 "         \"id\":2,\n" +
-                "         \"birthDate\":\"1989-08-10T00:00:00.000+00:00\",\n" +
                 "         \"name\":\"ROBIN\"\n" +
                 "      },\n" +
                 "      \"orderedItems\":[\n" +
@@ -109,7 +101,6 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
                 "            \"product\":{\n" +
                 "               \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\",\n" +
                 "               \"id\":1,\n" +
-                "               \"quantity\":60,\n" +
                 "               \"sku\":\"DELLNOTEI5\",\n" +
                 "               \"price\":300,\n" +
                 "               \"name\":\"Inspiron 15 3000 Laptop\"\n" +
@@ -122,7 +113,6 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
                 "            \"product\":{\n" +
                 "               \"description\":\"With a resolution of 2560-by-1600 for over 4 million pixels, the results are positively jaw dropping. Images take on a new level of detail and realism. Text is sharp and clear. And True Tone technology automatically adjusts the white point of the display to match the color temperature of your environment — making web pages and email look as natural as the printed page. With millions of colors, everything you see is rich and vibrant.\",\n" +
                 "               \"id\":2,\n" +
-                "               \"quantity\":60,\n" +
                 "               \"sku\":\"APPLENOTEI5\",\n" +
                 "               \"price\":900,\n" +
                 "               \"name\":\"MacBook Air\"\n" +
@@ -130,8 +120,7 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
                 "            \"totalPrice\":1800,\n" +
                 "            \"quantity\":2\n" +
                 "         }\n" +
-                "      ],\n" +
-                "      \"purchaseValue\":1500\n" +
+                "      ]\n" +
                 "   }\n" +
                 "]";
         JSONAssert.assertEquals(expected, responseEntity.getBody(), false);
@@ -169,27 +158,27 @@ public class OrderControllerTest extends SpringBootIntegrationTest {
         Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
         String actual = new ObjectMapper().writeValueAsString(new OrderDTO(orderRepository.findById(id).get()));
-        String expected = "{\n" +
-                "   \"id\":1,\n" +
-                "   \"client\":{\n" +
-                "      \"id\":1,\n" +
-                "   },\n" +
-                "   \"purchaseValue\":3000,\n" +
-                "   \"orderedItems\":[\n" +
-                "      {\n" +
-                "         \"id\":1,\n" +
-                "         \"totalPrice\":20700,\n" +
-                "         \"quantity\":69,\n" +
-                "         \"product\":{\n" +
-                "            \"name\":\"Inspiron 15 3000 Laptop\",\n" +
-                "            \"id\":1,\n" +
-                "            \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\",\n" +
-                "            \"quantity\":60,\n" +
-                "            \"price\":300,\n" +
-                "            \"sku\":\"DELLNOTEI5\"\n" +
-                "         }\n" +
-                "      }\n" +
-                "   ]\n" +
+        String expected = "{" +
+                "   \"id\":1," +
+                "   \"client\":{" +
+                "      \"id\":1" +
+                "   }," +
+                "   \"purchaseValue\":3000," +
+                "   \"orderedItems\":[" +
+                "      {" +
+                "         \"id\":1," +
+                "         \"totalPrice\":20700," +
+                "         \"quantity\":69," +
+                "         \"product\":{" +
+                "            \"name\":\"Inspiron 15 3000 Laptop\"," +
+                "            \"id\":1," +
+                "            \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell Mobile Connect pairs your iOS or Android smartphone with your laptop.\"," +
+                "            \"quantity\":60," +
+                "            \"price\":300," +
+                "            \"sku\":\"DELLNOTEI5\"" +
+                "         }" +
+                "      }" +
+                "   ]" +
                 "}";
         JSONAssert.assertEquals(expected, actual, false);
     }

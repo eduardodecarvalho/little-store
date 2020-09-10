@@ -54,7 +54,6 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
                 "      \"description\":\"Seamless PC/smartphone integration: Access multiple devices without dividing your attention—Dell" +
                 " Mobile Connect pairs your iOS or Android smartphone with your laptop.\"," +
                 "      \"id\":1," +
-                "      \"quantity\":70," +
                 "      \"sku\":\"DELLNOTEI5\"," +
                 "      \"price\":300," +
                 "      \"name\":\"Inspiron 15 3000 Laptop\"" +
@@ -66,7 +65,6 @@ public class ProductControllerTest extends SpringBootIntegrationTest {
                 " of your environment — making web pages and email look as natural as the printed page. With millions of colors, everything you see is rich" +
                 " and vibrant.\"," +
                 "      \"id\":2," +
-                "      \"quantity\":70," +
                 "      \"sku\":\"APPLENOTEI5\"," +
                 "      \"price\":900," +
                 "      \"name\":\"MacBook Air\"" +

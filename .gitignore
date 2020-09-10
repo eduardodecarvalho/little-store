@@ -45,9 +45,7 @@ output.log*
 .vagrant/
 /mysql-queries.log
 mysql-general-query.log
-/br.com.segware
 /data/
-/sigmax-transmitter/hornetq
 */.mvn/
 .DS_Store
 **.sts4-cache
