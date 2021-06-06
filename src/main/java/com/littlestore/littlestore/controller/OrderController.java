@@ -48,7 +48,7 @@ public class OrderController {
 
     @PostMapping("/v1/orders")
     @ResponseStatus(HttpStatus.CREATED)
-    public IdDTO create(@RequestBody OrderDTO orderDTO, @PathVariable Integer clientId) {
+    public IdDTO create(@RequestBody OrderDTO orderDTO) {
         return new IdDTO(orderService.create(orderDTO.getOrder()));
     }
 

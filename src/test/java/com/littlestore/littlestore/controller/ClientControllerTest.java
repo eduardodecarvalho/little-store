@@ -1,7 +1,10 @@
 package com.littlestore.littlestore.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
+import com.littlestore.littlestore.config.SpringBootIntegrationTest;
+import com.littlestore.littlestore.domain.dto.ClientDTO;
+import com.littlestore.littlestore.repository.ClientRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -11,15 +14,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.ActiveProfiles;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.JsonPath;
-import com.littlestore.littlestore.config.SpringBootIntegrationTest;
-import com.littlestore.littlestore.domain.dto.ClientDTO;
-import com.littlestore.littlestore.repository.ClientRepository;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ActiveProfiles(profiles = "test")
 public class ClientControllerTest extends SpringBootIntegrationTest {
 
     @Autowired

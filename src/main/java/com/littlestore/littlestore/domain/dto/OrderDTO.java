@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.littlestore.littlestore.domain.Order;
+import org.apache.commons.collections4.CollectionUtils;
 
 public class OrderDTO implements Serializable {
 
@@ -75,7 +76,9 @@ public class OrderDTO implements Serializable {
     }
 
     public void setOrderedItems(List<OrderedItemDTO> orderedItems) {
-        order.setOrderedItems(orderedItems.stream().map(OrderedItemDTO::getOrderedItem).collect(Collectors.toList()));
+        if (CollectionUtils.isNotEmpty(orderedItems)) {
+            order.setOrderedItems(orderedItems.stream().map(OrderedItemDTO::getOrderedItem).collect(Collectors.toList()));
+        }
     }
 
 }
