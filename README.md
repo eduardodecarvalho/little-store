@@ -4,9 +4,9 @@ An API simulating a little Store using Spring Boot.
 # Features
 This API provides HTTP endpoint's and tools for the following features:
 
-Create, edit, get, list and delete clients;
-Create, edit, get, list and delete Products;
-Create, edit, get, list and delete Orders;
+<p>Create, edit, get, list and delete clients;</p>
+<p>Create, edit, get, list and delete Products;</p>
+<p>Create, edit, get, list and delete Orders;</p>
 
 # Docker
 Run docker with the command: <code>docker-compose up -d</code>
