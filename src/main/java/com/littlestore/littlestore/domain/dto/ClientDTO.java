@@ -1,13 +1,14 @@
 package com.littlestore.littlestore.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.littlestore.littlestore.domain.Client;
+import com.littlestore.littlestore.domain.enums.Role;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.littlestore.littlestore.domain.Client;
 
 public class ClientDTO implements Serializable {
 
@@ -53,6 +54,22 @@ public class ClientDTO implements Serializable {
         if (birthDate != null) {
             client.setBirthDate(LocalDateTime.ofInstant(birthDate.toInstant(), ZoneId.systemDefault()));
         }
+    }
+
+    public String getPassword() {
+        return client.getPassword();
+    }
+
+    public void setPassword(String password) {
+        client.setPassword(password);
+    }
+
+    public int getRole() {
+        return client.getRole();
+    }
+
+    public void setRole(int role) {
+        client.setRole(role);
     }
 
 }

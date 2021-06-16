@@ -1,22 +1,23 @@
 package com.littlestore.littlestore.service;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.springframework.stereotype.Service;
-
 import com.littlestore.littlestore.domain.Client;
 import com.littlestore.littlestore.repository.ClientRepository;
 import com.littlestore.littlestore.utils.BusinessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class ClientService {
 
     private final ClientRepository clientRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, BCryptPasswordEncoder passwordEncoder) {
         this.clientRepository = clientRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Client findById(Integer id) {
@@ -36,6 +37,7 @@ public class ClientService {
 
     @Transactional
     public Integer create(Client client) {
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
         return clientRepository.save(client).getId();
     }
 

@@ -1,14 +1,9 @@
 package com.littlestore.littlestore.domain;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.SQLDelete;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "CLIENT")
@@ -18,6 +13,8 @@ public class Client {
     private Integer id;
     private String name;
     private LocalDateTime birthDate;
+    private String password;
+    private int role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,4 +42,19 @@ public class Client {
         this.birthDate = birthDate;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 }

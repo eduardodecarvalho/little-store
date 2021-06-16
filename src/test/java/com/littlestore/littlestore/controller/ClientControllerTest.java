@@ -113,7 +113,9 @@ public class ClientControllerTest extends SpringBootIntegrationTest {
     public void saveNew() throws Exception {
         String dtoString = "{" +
                 "    \"birthDate\":\"1988-03-26\", " +
-                "    \"name\": \"name\"" +
+                "    \"name\": \"name\"," +
+                "    \"password\": \"password\"," +
+                "    \"role\": 2" +
                 "}";
         ClientDTO dto = new ObjectMapper().readValue(dtoString, ClientDTO.class);
 
